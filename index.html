@@ -39,14 +39,16 @@
       background:radial-gradient(circle at top,#0d0f1a,#05060b);
     }
     .hero-wrapper{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      width:100%;
-      gap:60px;
-      flex-wrap:wrap;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      gap: 60px;
+      flex-wrap: nowrap; /* supaya foto tidak turun di desktop */
     }
-    .hero-content{max-width:650px;}
+    .hero-content{
+      max-width: 60%; /* teks tidak terlalu lebar di desktop */
+    }
     .hero h1{font-size:48px;line-height:1.2;margin-bottom:20px;}
     .hero h1 span{color:#b47cff;}
     .hero p{color:#cfcfe6;margin-bottom:35px;font-size:16px;}
@@ -61,14 +63,14 @@
     }
     .btn:hover{transform:scale(1.05);}
     .hero-image{
-      width:380px;
-      height:380px;
+      flex-shrink:0;
+      width:340px;
+      height:340px;
       border-radius:50%;
       overflow:hidden;
       border:6px solid #b47cff;
       box-shadow:0 0 40px rgba(180,124,255,0.5);
-      flex-shrink:0;
-      margin:auto;
+      margin:0; /* hilangkan auto supaya tetap di samping */
     }
     .hero-image img{width:100%;height:100%;object-fit:cover;}
 
@@ -177,6 +179,14 @@
     @media(max-width:1024px){
       .projects-grid{grid-template-columns:1fr;}
       .skills-grid{grid-template-columns:repeat(2,1fr);}
+    }
+    @media(max-width:768px){
+      .hero-wrapper{
+        flex-direction: column-reverse; /* teks di atas, foto di bawah */
+        text-align: center;
+      }
+      .hero-image{margin-top:30px;}
+      .hero-content{max-width:100%;}
     }
     @media(max-width:600px){
       .skills-grid{grid-template-columns:1fr;}
