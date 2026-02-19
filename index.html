@@ -5,147 +5,218 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Portofolio Arla</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
   <style>
-    *{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
-    body{background:#05060b;color:#fff;overflow-x:hidden;}
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:'Poppins',sans-serif;
+    }
+
+    body{
+      background:#05060b;
+      color:#fff;
+      overflow-x:hidden;
+    }
+
     a{text-decoration:none;color:inherit;}
 
-    /* NAVBAR */
+    /* ================= NAVBAR ================= */
     nav{
       width:100%;
-      padding:18px 8%;
+      padding:16px 6%;
       display:flex;
       justify-content:space-between;
       align-items:center;
       position:fixed;
       top:0;
       left:0;
-      background:rgba(5,6,11,0.85);
+      background:rgba(5,6,11,0.9);
       backdrop-filter:blur(10px);
       z-index:999;
     }
-    nav .logo{font-size:22px;font-weight:700;color:#b47cff;}
-    nav ul{display:flex;gap:28px;list-style:none;}
-    nav ul li a{font-weight:500;transition:.3s;}
+
+    .logo{
+      font-size:22px;
+      font-weight:700;
+      color:#b47cff;
+    }
+
+    nav ul{
+      display:flex;
+      gap:22px;
+      list-style:none;
+    }
+
+    nav ul li a{
+      font-weight:500;
+      transition:.3s;
+    }
+
     nav ul li a:hover{color:#b47cff;}
 
-    /* HERO */
+    /* ================= HERO ================= */
     .hero{
       min-height:100vh;
+      padding:120px 6% 60px;
+      background:radial-gradient(circle at top,#0d0f1a,#05060b);
       display:flex;
       align-items:center;
-      padding:120px 8% 60px;
-      background:radial-gradient(circle at top,#0d0f1a,#05060b);
-    }    
+    }
+
     .hero-wrapper{
+      width:100%;
       display:flex;
       align-items:center;
       justify-content:space-between;
-      width:100%;
       gap:60px;
+      flex-wrap:wrap;
     }
-    .hero-content{max-width:650px;}
-    .hero h1{font-size:48px;line-height:1.2;margin-bottom:20px;}
+
+    .hero-content{
+      max-width:600px;
+    }
+
+    .hero h1{
+      font-size:46px;
+      line-height:1.2;
+      margin-bottom:20px;
+    }
+
     .hero h1 span{color:#b47cff;}
-    .hero p{color:#cfcfe6;margin-bottom:35px;}
-    .hero .btn{
+
+    .hero p{
+      color:#cfcfe6;
+      margin-bottom:30px;
+      font-size:16px;
+    }
+
+    .btn{
       display:inline-block;
       padding:14px 36px;
       border-radius:30px;
       background:linear-gradient(135deg,#7f5cff,#b47cff);
       font-weight:600;
       box-shadow:0 0 25px rgba(180,124,255,.4);
-    }    
+      transition:.3s;
+    }
+
+    .btn:hover{transform:scale(1.05);}
 
     .hero-image{
-      width:380px;
-      height:380px;
+      width:340px;
+      height:340px;
       border-radius:50%;
       overflow:hidden;
       border:6px solid #b47cff;
       box-shadow:0 0 40px rgba(180,124,255,0.5);
       flex-shrink:0;
+      margin:auto;
     }
+
     .hero-image img{
       width:100%;
       height:100%;
       object-fit:cover;
     }
 
-    /* SECTION */
-    section{padding:100px 8%;}
-    .section-title{text-align:center;margin-bottom:60px;}
-    .section-title h2{font-size:42px;color:#b47cff;}
-    .section-title p{color:#cfcfe6;margin-top:10px;}
+    /* ================= SECTION ================= */
+    section{
+      padding:90px 6%;
+    }
 
-    /* PROJECTS */
+    .section-title{
+      text-align:center;
+      margin-bottom:50px;
+    }
+
+    .section-title h2{
+      font-size:40px;
+      color:#b47cff;
+    }
+
+    .section-title p{
+      color:#cfcfe6;
+      margin-top:10px;
+    }
+
+    /* ================= GRID SYSTEM ================= */
     .projects-grid{
       display:grid;
-      grid-template-columns:repeat(2,1fr);
-      gap:30px;
+      grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+      gap:25px;
     }
+
     .project-card{
       background:#151b2a;
       border-radius:18px;
-      padding:30px;
+      padding:28px;
       transition:.4s;
       border:1px solid rgba(255,255,255,.05);
-    }    
+    }
+
     .project-card:hover{
       transform:translateY(-8px);
       box-shadow:0 0 30px rgba(180,124,255,.35);
       border:1px solid rgba(180,124,255,.4);
-    }    
-    .project-card h3{margin-bottom:10px;color:#fff;}
-    .project-card span{color:#b47cff;font-size:14px;}
-    .project-card p{margin-top:12px;color:#cfcfe6;font-size:14px;line-height:1.6;}
+    }
 
-    /* SKILLS */
+    .project-card h3{margin:10px 0;}
+    .project-card span{color:#b47cff;font-size:14px;}
+    .project-card p{color:#cfcfe6;font-size:14px;}
+
+    /* ================= SKILLS ================= */
     .skills-section{
       background:radial-gradient(circle at top,#0d0f1a,#05060b);
-      padding:100px 8%;
       text-align:center;
     }
+
     .skills-title{
       font-size:42px;
       font-weight:700;
       color:#b47cff;
-      margin-bottom:60px;
+      margin-bottom:50px;
     }
+
     .skills-grid{
       display:grid;
-      grid-template-columns:repeat(4,1fr);
-      gap:25px;
+      grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
+      gap:20px;
     }
+
     .skill-card{
       background:#151b2a;
       border-radius:16px;
-      padding:30px 15px;
+      padding:25px 15px;
       display:flex;
       flex-direction:column;
       align-items:center;
       justify-content:center;
-      min-height:130px;
+      height:120px;
       transition:.4s;
       border:1px solid rgba(255,255,255,0.05);
       cursor:pointer;
-    }    
-    .skill-card span{font-size:30px;margin-bottom:10px;}
-    .skill-card p{color:#eaeaff;font-size:15px;font-weight:500;text-align:center;}
+    }
+
+    .skill-card span{font-size:30px;margin-bottom:8px;}
+    .skill-card p{font-size:15px;font-weight:500;}
+
     .skill-card:hover{
       transform:translateY(-6px) scale(1.03);
       box-shadow:0 0 25px rgba(180,124,255,0.35);
       border:1px solid rgba(180,124,255,0.5);
-    }    
+    }
 
-    /* CONTACT */
+    /* ================= CONTACT ================= */
     .contact-grid{
       display:grid;
-      grid-template-columns:repeat(3,1fr);
-      gap:25px;
+      grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+      gap:20px;
       max-width:900px;
       margin:0 auto;
     }
+
     .contact-card{
       background:linear-gradient(145deg,#151b2a,#0d1220);
       border-radius:20px;
@@ -154,93 +225,63 @@
       transition:.4s;
       border:1px solid rgba(255,255,255,.06);
     }
+
     .contact-card:hover{
       transform:translateY(-8px);
-      box-shadow:0 0 30px rgba(180,124,255,.4);
+      box-shadow:0 0 35px rgba(180,124,255,.45);
       border:1px solid rgba(180,124,255,.5);
-    } 
-    .contact-icon{font-size:34px;margin-bottom:12px;}
-    .contact-card h3{margin-bottom:8px;}
-    .contact-card a{color:#cfcfe6;font-size:14px;transition:.3s;word-break:break-all;}
-    .contact-card a:hover{color:#b47cff;}
+    }
 
-    /* FOOTER */
+    .contact-icon{font-size:34px;margin-bottom:12px;}
+
+    /* ================= FOOTER ================= */
     footer{
       text-align:center;
-      padding:35px 15px;
+      padding:35px 20px;
       background:#05060b;
       color:#aaa;
-      font-size:13px;
+      font-size:14px;
     }
 
     /* ================= RESPONSIVE ================= */
-
-    /* Tablet */
-    @media(max-width:1024px){
+    @media(max-width:900px){
       .hero-wrapper{
-        flex-direction:column;
+        flex-direction:column-reverse;
         text-align:center;
       }
 
-      .hero-image{
-        width:300px;
-        height:300px;
-        margin-top:30px;
-      }
-
-      .projects-grid{grid-template-columns:1fr;}
-      .skills-grid{grid-template-columns:repeat(2,1fr);}
-      .contact-grid{grid-template-columns:repeat(2,1fr);}
-    }
-
-    /* HP */
-    @media(max-width:600px){
-      nav{
-        padding:15px 6%;
-      }
-
-      nav ul{
-        gap:14px;
-        font-size:13px;
-      }
-
-      .hero{
-        padding:110px 6% 40px;
+      .hero-content{
+        max-width:100%;
       }
 
       .hero h1{
-        font-size:32px;
+        font-size:36px;
+      }
+    }
+
+    @media(max-width:500px){
+      nav ul{
+        display:none;
       }
 
-      .hero p{
-        font-size:14px;
+      .hero{
+        padding-top:100px;
       }
 
       .hero-image{
-        width:230px;
-        height:230px;
-      }
-
-      section{
-        padding:80px 6%;
+        width:260px;
+        height:260px;
       }
 
       .section-title h2{
-        font-size:30px;
+        font-size:32px;
       }
-
-      .projects-grid{grid-template-columns:1fr;}
-      .skills-grid{grid-template-columns:1fr;}
-      .contact-grid{grid-template-columns:1fr;}
 
       .skills-title{
-        font-size:30px;
-      }
-
-      footer{
-        font-size:12px;
+        font-size:34px;
       }
     }
+
   </style>
 </head>
 
@@ -272,6 +313,81 @@
     </div>
   </div>
 </section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-title">
+    <h2>Proyek</h2>
+    <p>Beberapa proyek yang telah saya kerjakan</p>
+  </div>
+
+  <div class="projects-grid">
+    <div class="project-card"><span>UI/UX Aplikasi</span><h3>FoodGo App</h3><p>Aplikasi pemesanan makanan modern.</p></div>
+    <div class="project-card"><span>Digital Platform</span><h3>Digital Marketing App</h3><p>Platform layanan digital marketing.</p></div>
+    <div class="project-card"><span>E-Commerce</span><h3>Website Toko Gorden</h3><p>Website e-commerce interior.</p></div>
+    <div class="project-card"><span>POS System</span><h3>Kasir Pintar</h3><p>Sistem kasir digital.</p></div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-title">
+    <h2>Pengalaman</h2>
+    <p>Pengalaman kerja lapangan</p>
+  </div>
+
+  <div class="projects-grid">
+    <div class="project-card">
+      <span>Freelance</span>
+      <h3>Asisten Arsip Pertanahan</h3>
+      <p>Scanning, input data, digitalisasi arsip.</p>
+    </div>
+
+    <div class="project-card">
+      <span>Paruh Waktu</span>
+      <h3>Service Crew Coffeeshop</h3>
+      <p>Layanan pelanggan dan operasional.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section class="skills-section" id="skills">
+  <h2 class="skills-title">Keahlian</h2>
+
+  <div class="skills-grid">
+    <div class="skill-card"><span>🎨</span><p>UI/UX</p></div>
+    <div class="skill-card"><span>🖥️</span><p>Web Design</p></div>
+    <div class="skill-card"><span>🧩</span><p>Figma</p></div>
+    <div class="skill-card"><span>📄</span><p>HTML</p></div>
+    <div class="skill-card"><span>🎯</span><p>CSS</p></div>
+    <div class="skill-card"><span>🐘</span><p>PHP</p></div>
+    <div class="skill-card"><span>🚀</span><p>Laravel</p></div>
+    <div class="skill-card"><span>📱</span><p>Flutter</p></div>
+    <div class="skill-card"><span>🔗</span><p>REST API</p></div>
+    <div class="skill-card"><span>🐙</span><p>GitHub</p></div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-title">
+    <h2>Kontak</h2>
+    <p>Hubungi saya</p>
+  </div>
+
+  <div class="contact-grid">
+    <div class="contact-card"><div class="contact-icon">📱</div><h3>WhatsApp</h3><a href="https://wa.me/6282141404377">0821-4140-4377</a></div>
+    <div class="contact-card"><div class="contact-icon">📧</div><h3>Email</h3><a href="mailto:arlafelda321@gmail.com">arlafelda321@gmail.com</a></div>
+    <div class="contact-card"><div class="contact-icon">📸</div><h3>Instagram</h3><a href="https://instagram.com/arlafelda">@arlafelda</a></div>
+    <div class="contact-card"><div class="contact-icon">💻</div><h3>GitHub</h3><a href="https://github.com/arlafelda">github.com/arlafelda</a></div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 Arlafelda Meindra Widayat — Portofolio Digital</p>
+  <p>Desain dengan tujuan, bangun dengan logika.</p>
+</footer>
 
 </body>
 </html>
