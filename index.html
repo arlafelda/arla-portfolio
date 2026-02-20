@@ -24,10 +24,58 @@
       backdrop-filter:blur(10px);
       z-index:999;
     }
-    .logo{font-size:22px;font-weight:700;color:#b47cff;}
-    nav ul{display:flex;gap:30px;list-style:none;}
+    .logo{font-size:22px;font-weight:700;color:#b47cff;z-index:1001;}
+
+    nav ul{
+      display:flex;
+      gap:30px;
+      list-style:none;
+      transition:.4s ease;
+    }
     nav ul li a{font-weight:500;transition:.3s;}
     nav ul li a:hover{color:#b47cff;}
+
+    /* ===== Hamburger ===== */
+    .menu-toggle{
+      display:none;
+      flex-direction:column;
+      gap:6px;
+      cursor:pointer;
+      z-index:1001;
+    }
+    .menu-toggle span{
+      width:26px;
+      height:3px;
+      background:#fff;
+      border-radius:5px;
+      transition:.3s;
+    }
+
+    /* ================= MOBILE NAV ================= */
+    @media(max-width:768px){
+      .menu-toggle{display:flex;}
+
+      nav ul{
+        position:absolute;
+        top:100%;
+        left:0;
+        width:100%;
+        background:rgba(5,6,11,0.95);
+        backdrop-filter:blur(12px);
+        flex-direction:column;
+        align-items:center;
+        gap:25px;
+        padding:30px 0;
+        max-height:0;
+        overflow:hidden;
+      }
+
+      nav ul.active{
+        max-height:500px;
+      }
+
+      nav ul li a{font-size:18px;}
+    }
 
     /* ================= HERO ================= */
     .hero{
@@ -39,19 +87,18 @@
       background:radial-gradient(circle at top,#0d0f1a,#05060b);
     }
     .hero-wrapper{
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      width: 100%;
-      gap: 60px;
-      flex-wrap: nowrap; /* supaya foto tidak turun di desktop */
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      width:100%;
+      gap:60px;
+      flex-wrap:nowrap;
     }
-    .hero-content{
-      max-width: 60%; /* teks tidak terlalu lebar di desktop */
-    }
+    .hero-content{max-width:60%;}
     .hero h1{font-size:48px;line-height:1.2;margin-bottom:20px;}
     .hero h1 span{color:#b47cff;}
     .hero p{color:#cfcfe6;margin-bottom:35px;font-size:16px;}
+
     .btn{
       display:inline-block;
       padding:14px 36px;
@@ -62,6 +109,7 @@
       transition:.3s;
     }
     .btn:hover{transform:scale(1.05);}
+
     .hero-image{
       flex-shrink:0;
       width:340px;
@@ -70,7 +118,6 @@
       overflow:hidden;
       border:6px solid #b47cff;
       box-shadow:0 0 40px rgba(180,124,255,0.5);
-      margin:0; /* hilangkan auto supaya tetap di samping */
     }
     .hero-image img{width:100%;height:100%;object-fit:cover;}
 
@@ -105,7 +152,6 @@
     /* ================= SKILLS ================= */
     .skills-section{
       background:radial-gradient(circle at top,#0d0f1a,#05060b);
-      padding:100px 8%;
       text-align:center;
     }
     .skills-title{font-size:48px;font-weight:700;color:#b47cff;margin-bottom:60px;}
@@ -182,8 +228,8 @@
     }
     @media(max-width:768px){
       .hero-wrapper{
-        flex-direction: column-reverse; /* teks di atas, foto di bawah */
-        text-align: center;
+        flex-direction:column-reverse;
+        text-align:center;
       }
       .hero-image{margin-top:30px;}
       .hero-content{max-width:100%;}
@@ -192,163 +238,186 @@
       .skills-grid{grid-template-columns:1fr;}
       .hero h1{font-size:36px;}
     }
-
   </style>
 </head>
+
 <body>
 
-  <!-- NAVBAR -->
-  <nav>
-    <div class="logo">ArlaPorto</div>
-    <ul>
-      <li><a href="#home">Beranda</a></li>
-      <li><a href="#projects">Proyek</a></li>
-      <li><a href="#experience">Pengalaman</a></li>
-      <li><a href="#skills">Keahlian</a></li>
-      <li><a href="#contact">Kontak</a></li>
-    </ul>
-  </nav>
+<!-- NAVBAR -->
+<nav>
+  <div class="logo">ArlaPorto</div>
 
-  <!-- HERO -->
-  <section class="hero" id="home">
-    <div class="hero-wrapper">
-      <div class="hero-content">
-        <h1>Halo, saya <span>Arla</span><br>UI/UX Designer & Web Developer</h1>
-        <p>Fokus pada pengembangan sistem digital, desain UI/UX modern, dan website profesional berbasis teknologi.</p>
-        <a href="#projects" class="btn">Lihat Portofolio</a>
-      </div>
-      <div class="hero-image">
-        <img src="profile.jpeg" alt="Foto Profil Arla">
-      </div>
-    </div>
-  </section>
+  <div class="menu-toggle" id="menuToggle">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
 
-  <!-- PROJECTS -->
-  <section id="projects">
-    <div class="section-title">
-      <h2>Proyek</h2>
-      <p>Beberapa proyek yang telah saya kerjakan</p>
-    </div>
-    <div class="projects-grid">
-      <div class="project-card"><span>UI/UX Aplikasi Mobile</span><h3>FoodGo App</h3><p>Aplikasi pemesanan makanan modern dengan alur pengguna terstruktur dan pengalaman pengguna profesional.</p></div>
-      <div class="project-card"><span>UI/UX Aplikasi Mobile</span><h3>Digital Marketing App</h3><p>Platform layanan digital marketing dengan sistem pembayaran dan dashboard terintegrasi.</p></div>
-      <div class="project-card"><span>Website E-Commerce</span><h3>Website Toko Gorden</h3><p>Website e-commerce interior dengan sistem transaksi dan manajemen akun pengguna.</p></div>
-      <div class="project-card"><span>Sistem Kasir Digital</span><h3>Kasir Pintar</h3><p>Sistem kasir digital untuk manajemen transaksi, produk, dan laporan penjualan.</p></div>
-    </div>
-  </section>
+  <ul id="navMenu">
+    <li><a href="#home">Beranda</a></li>
+    <li><a href="#projects">Proyek</a></li>
+    <li><a href="#experience">Pengalaman</a></li>
+    <li><a href="#skills">Keahlian</a></li>
+    <li><a href="#contact">Kontak</a></li>
+  </ul>
+</nav>
 
-  <!-- EXPERIENCE -->
-  <section id="experience">
-    <div class="section-title">
-      <h2>Pengalaman Kerja</h2>
-      <p>Pengalaman kerja dan kontribusi lapangan</p>
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-wrapper">
+    <div class="hero-content">
+      <h1>Halo, saya <span>Arla</span><br>UI/UX Designer & Web Developer</h1>
+      <p>Fokus pada pengembangan sistem digital, desain UI/UX modern, dan website profesional berbasis teknologi.</p>
+      <a href="#projects" class="btn">Lihat Portofolio</a>
     </div>
-    <div class="projects-grid">
-      <div class="project-card">
-        <span>Freelance / Paruh Waktu</span>
-        <h3>Asisten Arsip Pertanahan</h3>
-        <p>Membantu proses pemindaian (scanning) dokumen pertanahan, input data laporan ke sistem digital, pengarsipan dokumen digital, penataan file terstruktur, serta administrasi data dasar.</p>
-      </div>
-      <div class="project-card">
-        <span>Paruh Waktu</span>
-        <h3>Pelayan Coffeeshop (Service Crew)</h3>
-        <p>Melayani pelanggan secara langsung, pencatatan pesanan, membantu operasional harian, menjaga kebersihan area kerja, serta mendukung kelancaran layanan pelanggan.</p>
-      </div>
+    <div class="hero-image">
+      <img src="profile.jpeg" alt="Foto Profil Arla">
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- CERTIFICATES -->
-  <section id="certificates">
-    <div class="section-title">
-      <h2>Sertifikat</h2>
-      <p>Sertifikasi dan pelatihan yang telah saya ikuti</p>
-    </div>
-    <div class="projects-grid">
-      <div class="project-card">
-        <span>RevoU</span>
-        <h3>Certified Online Course – Coding Camp</h3>
-        <p>
-          Sertifikat kehadiran pada kursus online bersertifikat selama 1 minggu yang diselenggarakan oleh RevoU.<br><br>
-          <strong>Penerbit:</strong> PT Revolusi Cita Edukasi (RevoU)<br>
-          <strong>Tanggal:</strong> 3 Oktober 2025<br>
-          <strong>No Sertifikat:</strong> CCSE 290925-01-1-00121
-        </p>
-      </div>
-      <div class="project-card">
-        <span>Dicoding Academy</span>
-        <h3>Introduction to Financial Literacy</h3>
-        <p>
-          Sertifikat kelulusan kelas Literasi Finansial pada program Coding Camp powered by DBS Foundation 2026.<br><br>
-          <strong>Penerbit:</strong> Dicoding Indonesia<br>
-          <strong>Tanggal:</strong> 10 Januari 2026<br>
-          <strong>ID Sertifikat:</strong> RVZKG2KGOXD5<br>
-          <strong>Link:</strong> <a href="https://www.dicoding.com/certificates/RVZKG2KGOXD5" target="_blank">Verifikasi Sertifikat</a>
-        </p>
-      </div>
-    </div>
-  </section>
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-title">
+    <h2>Proyek</h2>
+    <p>Beberapa proyek yang telah saya kerjakan</p>
+  </div>
+  <div class="projects-grid">
+    <div class="project-card"><span>UI/UX Aplikasi Mobile</span><h3>FoodGo App</h3><p>Aplikasi pemesanan makanan modern dengan alur pengguna terstruktur dan pengalaman pengguna profesional.</p></div>
+    <div class="project-card"><span>UI/UX Aplikasi Mobile</span><h3>Digital Marketing App</h3><p>Platform layanan digital marketing dengan sistem pembayaran dan dashboard terintegrasi.</p></div>
+    <div class="project-card"><span>Website E-Commerce</span><h3>Website Toko Gorden</h3><p>Website e-commerce interior dengan sistem transaksi dan manajemen akun pengguna.</p></div>
+    <div class="project-card"><span>Sistem Kasir Digital</span><h3>Kasir Pintar</h3><p>Sistem kasir digital untuk manajemen transaksi, produk, dan laporan penjualan.</p></div>
+  </div>
+</section>
 
-  <!-- SKILLS -->
-  <section class="skills-section" id="skills">
-    <h2 class="skills-title">Keahlian Saya</h2>
-    <div class="skills-grid">
-      <div class="skill-card"><span>🎨</span><p>Desain UI/UX</p></div>
-      <div class="skill-card"><span>🖥️</span><p>Desain Web</p></div>
-      <div class="skill-card"><span>🧩</span><p>Figma</p></div>
-      <div class="skill-card"><span>🧠</span><p>Desain Sistem</p></div>
-      <div class="skill-card"><span>📄</span><p>HTML</p></div>
-      <div class="skill-card"><span>🎯</span><p>CSS</p></div>
-      <div class="skill-card"><span>🐘</span><p>PHP</p></div>
-      <div class="skill-card"><span>🛢️</span><p>MySQL</p></div>
-      <div class="skill-card"><span>🚀</span><p>Laravel</p></div>
-      <div class="skill-card"><span>📱</span><p>Flutter</p></div>
-      <div class="skill-card"><span>🔗</span><p>REST API</p></div>
-      <div class="skill-card"><span>🗄️</span><p>Desain Database</p></div>
-      <div class="skill-card"><span>🐙</span><p>GitHub</p></div>
-      <div class="skill-card"><span>📝</span><p>Visual Studio Code</p></div>
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-title">
+    <h2>Pengalaman Kerja</h2>
+    <p>Pengalaman kerja dan kontribusi lapangan</p>
+  </div>
+  <div class="projects-grid">
+    <div class="project-card">
+      <span>Freelance / Paruh Waktu</span>
+      <h3>Asisten Arsip Pertanahan</h3>
+      <p>Membantu proses pemindaian (scanning) dokumen pertanahan, input data laporan ke sistem digital, pengarsipan dokumen digital, penataan file terstruktur, serta administrasi data dasar.</p>
     </div>
-  </section>
+    <div class="project-card">
+      <span>Paruh Waktu</span>
+      <h3>Pelayan Coffeeshop (Service Crew)</h3>
+      <p>Melayani pelanggan secara langsung, pencatatan pesanan, membantu operasional harian, menjaga kebersihan area kerja, serta mendukung kelancaran layanan pelanggan.</p>
+    </div>
+  </div>
+</section>
 
-  <!-- CONTACT -->
-  <section id="contact">
-    <div class="section-title">
-      <h2>Kontak</h2>
-      <p>Hubungi saya melalui platform berikut</p>
+<!-- CERTIFICATES -->
+<section id="certificates">
+  <div class="section-title">
+    <h2>Sertifikat</h2>
+    <p>Sertifikasi dan pelatihan yang telah saya ikuti</p>
+  </div>
+  <div class="projects-grid">
+    <div class="project-card">
+      <span>RevoU</span>
+      <h3>Certified Online Course – Coding Camp</h3>
+      <p>
+        Sertifikat kehadiran pada kursus online bersertifikat selama 1 minggu yang diselenggarakan oleh RevoU.<br><br>
+        <strong>Penerbit:</strong> PT Revolusi Cita Edukasi (RevoU)<br>
+        <strong>Tanggal:</strong> 3 Oktober 2025<br>
+        <strong>No Sertifikat:</strong> CCSE 290925-01-1-00121
+      </p>
     </div>
-    <div class="contact-grid">
-      <div class="contact-card">
-        <div class="contact-icon">📱</div>
-        <h3>WhatsApp</h3>
-        <a href="https://wa.me/6282141404377" target="_blank">0821-4140-4377</a>
-      </div>
-      <div class="contact-card">
-        <div class="contact-icon">📧</div>
-        <h3>Email</h3>
-        <a href="mailto:arlafelda321@gmail.com">arlafelda321@gmail.com</a>
-      </div>
-      <div class="contact-card">
-        <div class="contact-icon">📸</div>
-        <h3>Instagram</h3>
-        <a href="https://instagram.com/arlafelda" target="_blank">@arlafelda</a>
-      </div>
-      <div class="contact-card">
-        <div class="contact-icon">🎵</div>
-        <h3>TikTok</h3>
-        <a href="https://tiktok.com/@arlafelda" target="_blank">@arlafelda</a>
-      </div>
-      <div class="contact-card">
-        <div class="contact-icon">💻</div>
-        <h3>GitHub</h3>
-        <a href="https://github.com/arlafelda" target="_blank">github.com/arlafelda</a>
-      </div>
+    <div class="project-card">
+      <span>Dicoding Academy</span>
+      <h3>Introduction to Financial Literacy</h3>
+      <p>
+        Sertifikat kelulusan kelas Literasi Finansial pada program Coding Camp powered by DBS Foundation 2026.<br><br>
+        <strong>Penerbit:</strong> Dicoding Indonesia<br>
+        <strong>Tanggal:</strong> 10 Januari 2026<br>
+        <strong>ID Sertifikat:</strong> RVZKG2KGOXD5<br>
+        <strong>Link:</strong> <a href="https://www.dicoding.com/certificates/RVZKG2KGOXD5" target="_blank">Verifikasi Sertifikat</a>
+      </p>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- FOOTER -->
-  <footer>
-    <p>© 2026 Arlafelda Meindra Widayat — Portofolio Digital Profesional</p>
-    <p>Desain dengan tujuan, bangun dengan logika.</p>
-  </footer>
+<!-- SKILLS -->
+<section class="skills-section" id="skills">
+  <h2 class="skills-title">Keahlian Saya</h2>
+  <div class="skills-grid">
+    <div class="skill-card"><span>🎨</span><p>Desain UI/UX</p></div>
+    <div class="skill-card"><span>🖥️</span><p>Desain Web</p></div>
+    <div class="skill-card"><span>🧩</span><p>Figma</p></div>
+    <div class="skill-card"><span>🧠</span><p>Desain Sistem</p></div>
+    <div class="skill-card"><span>📄</span><p>HTML</p></div>
+    <div class="skill-card"><span>🎯</span><p>CSS</p></div>
+    <div class="skill-card"><span>🐘</span><p>PHP</p></div>
+    <div class="skill-card"><span>🛢️</span><p>MySQL</p></div>
+    <div class="skill-card"><span>🚀</span><p>Laravel</p></div>
+    <div class="skill-card"><span>📱</span><p>Flutter</p></div>
+    <div class="skill-card"><span>🔗</span><p>REST API</p></div>
+    <div class="skill-card"><span>🗄️</span><p>Desain Database</p></div>
+    <div class="skill-card"><span>🐙</span><p>GitHub</p></div>
+    <div class="skill-card"><span>📝</span><p>Visual Studio Code</p></div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-title">
+    <h2>Kontak</h2>
+    <p>Hubungi saya melalui platform berikut</p>
+  </div>
+  <div class="contact-grid">
+    <div class="contact-card">
+      <div class="contact-icon">📱</div>
+      <h3>WhatsApp</h3>
+      <a href="https://wa.me/6282141404377" target="_blank">0821-4140-4377</a>
+    </div>
+    <div class="contact-card">
+      <div class="contact-icon">📧</div>
+      <h3>Email</h3>
+      <a href="mailto:arlafelda321@gmail.com">arlafelda321@gmail.com</a>
+    </div>
+    <div class="contact-card">
+      <div class="contact-icon">📸</div>
+      <h3>Instagram</h3>
+      <a href="https://instagram.com/arlafelda" target="_blank">@arlafelda</a>
+    </div>
+    <div class="contact-card">
+      <div class="contact-icon">🎵</div>
+      <h3>TikTok</h3>
+      <a href="https://tiktok.com/@arlafelda" target="_blank">@arlafelda</a>
+    </div>
+    <div class="contact-card">
+      <div class="contact-icon">💻</div>
+      <h3>GitHub</h3>
+      <a href="https://github.com/arlafelda" target="_blank">github.com/arlafelda</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2026 Arlafelda Meindra Widayat — Portofolio Digital Profesional</p>
+  <p>Desain dengan tujuan, bangun dengan logika.</p>
+</footer>
+
+<!-- JS NAVBAR -->
+<script>
+  const menuToggle = document.getElementById("menuToggle");
+  const navMenu = document.getElementById("navMenu");
+
+  menuToggle.addEventListener("click", () => {
+    navMenu.classList.toggle("active");
+  });
+
+  document.querySelectorAll("#navMenu a").forEach(link => {
+    link.addEventListener("click", () => {
+      navMenu.classList.remove("active");
+    });
+  });
+</script>
 
 </body>
 </html>
